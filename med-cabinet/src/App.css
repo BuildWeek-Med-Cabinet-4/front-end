@@ -1,38 +1,51 @@
-.App {
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.signup-form input {
+  /* width: 100%;   */
+}
+
+input {
+  padding: 2%;
+  border-radius: 10px;
+  margin-bottom: 1%;
+  border: 3px solid green;
+  width: 30%;
+}
+
+input::placeholder {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.sign-up h2 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.buttons button {
+  background: green;
   color: white;
+  padding: 2%;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border: none;
+  width: 40%;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sign-up {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
 }

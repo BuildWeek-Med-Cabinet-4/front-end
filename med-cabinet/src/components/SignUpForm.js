@@ -59,7 +59,7 @@ const SignUpForm = () => {
     return (
         <div className="sign-up">
             <h2>Welcome, enter your information below to create an account</h2>
-            <form onSubmit={createUser}>
+            <form onSubmit={createUser} className="signup-form">
                 <input type="text" name="firstName" placeholder="First Name"  value={newUserInfo.firstName} onChange={handleChanges}/>
                 {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
                 <input type="text" name="lastName" placeholder="Last Name" value={newUserInfo.lastName} onChange={handleChanges}/>
@@ -70,10 +70,17 @@ const SignUpForm = () => {
                 {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
                 <input type="password" name="confirmPassword" placeholder="Re-type your password" value={newUserInfo.confirmPassword} onChange={handleChanges} />
                 {errors.confirmPassword.length > 0 ? <p className="error">{errors.confirmPassword}</p> : null}
-                <button>Cancel</button>
-                <button disabled={buttonOff} type="submit">Next</button>
+                {passwordsDontMatch ? <p>The passwords you entered do not match</p> : null}
+                <div className="buttons">
+                    <button>Cancel</button>
+                    <button disabled={buttonOff} type="submit">Next</button>  
+                </div>
             </form>
-            {passwordsDontMatch ? <p>The passwords you entered do not match</p> : null}
+            <div>
+                <p>Already have an account? 
+                    <span><a href="#"> Log in</a></span>
+                </p>
+            </div>
         </div>
     );
 };
