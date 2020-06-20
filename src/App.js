@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from "./components/LoginForm";
