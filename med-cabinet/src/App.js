@@ -17,13 +17,13 @@ function App() {
           <h2 className={loginActive ? "active" : null} onClick={(e)=>{
             e.preventDefault();
             setLoginActive(true);
-            }}><a href="#">Log in</a></h2>
+            }}>Log in</h2>
           
           
           <h2 className={loginActive ? "" : "active"} onClick={(e)=>{
             e.preventDefault();
             setLoginActive(false);
-            }}><a href="#">Sign Up</a></h2>
+            }}>Sign Up</h2>
         
         </header>
         {loginActive ? <LoginForm /> : <SignUpForm />}

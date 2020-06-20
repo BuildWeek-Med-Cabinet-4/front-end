@@ -74,8 +74,9 @@ const SignUpForm = () => {
                     <button onClick={(e)=>{
                         e.preventDefault();
                         //push back to home page
-                    }}><a href="#">Cancel</a></button>
-                    <button disabled={buttonOff} type="submit"><a href="#">Next</a></button>
+                    }}>Cancel</button>
+                    <button disabled={buttonOff} type="submit">Next</button>
+                    
                 </div>
             </form>
         </div>

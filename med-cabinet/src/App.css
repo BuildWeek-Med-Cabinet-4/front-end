@@ -57,6 +57,7 @@ button a {
   border-radius: 20px;
   border: none;
   width: 40%;
+  cursor: pointer;
 }
 
 .sign-up {
@@ -77,6 +78,7 @@ header h2 {
   color: green;
   margin-right: 5%;   
   padding-bottom: 3%;
+  cursor: pointer;
 }
 
 header {

@@ -60,8 +60,8 @@ const Login = () => {
                 <button onClick={(e)=>{
                         e.preventDefault();
                         //push back to home page
-                    }}><a href="#">Go Back</a></button>
-                    <button disabled={buttonOff} type="submit"><a href="#">Log in</a></button>  
+                    }}>Go Back</button>
+                    <button disabled={buttonOff} type="submit">Log in</button>  
                 </div>
             </form>
         </div>
