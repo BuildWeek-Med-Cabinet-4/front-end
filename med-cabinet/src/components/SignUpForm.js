@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
 import * as yup from 'yup';
 
 const SignUpForm = () => {
@@ -14,7 +13,6 @@ const SignUpForm = () => {
     const [errors, setErrors] = useState(initialFormState);
     const [passwordsDontMatch, setPasswordsDontMatch] = useState(false);
     const [buttonOff, setButtonOff] = useState(true);
-    const {push} = useHistory();
 
     const formSchema = yup.object().shape({
         firstName: yup.string().required("Please enter your first name"),
@@ -60,7 +58,6 @@ const SignUpForm = () => {
     
     return (
         <div className="sign-up">
-            <h2>Welcome, enter your information below to create an account</h2>
             <form onSubmit={createUser} className="signup-form">
                 <input type="text" name="firstName" placeholder="First Name"  value={newUserInfo.firstName} onChange={handleChanges}/>
                 {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
@@ -81,11 +78,6 @@ const SignUpForm = () => {
                     <button disabled={buttonOff} type="submit"><a href="#">Next</a></button>
                 </div>
             </form>
-            <div onClick={()=>push("/login")}>
-                <p>Already have an account? 
-                    <span><a href="#"> Log in</a></span>
-                </p>
-            </div>
         </div>
     );
 };

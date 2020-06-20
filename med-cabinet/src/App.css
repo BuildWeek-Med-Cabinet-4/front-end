@@ -1,3 +1,9 @@
+.App {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 form {
   display: flex;
   flex-flow: column nowrap;
@@ -26,12 +32,14 @@ h2 {
   text-align: center;
 }
 
-a {
+h2 a {
   text-decoration: none;
+  color: green;
 }
 
 button a {
   color: white;
+  text-decoration: none;
 }
 
 .buttons {
@@ -64,3 +72,19 @@ button a {
   align-items: center;
   width: 100%;
 }
+
+header h2 {
+  color: green;
+  margin-right: 5%;   
+  padding-bottom: 3%;
+}
+
+header {
+  display: flex;
+  width: 33%;
+}
+
+.active {
+  border-bottom: 2px solid green;
+}
+
