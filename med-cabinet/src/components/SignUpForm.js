@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import * as yup from 'yup';
 
 const SignUpForm = () => {
@@ -9,10 +10,11 @@ const SignUpForm = () => {
         password: "",
         confirmPassword: ""
     }
-    const [newUserInfo, SetNewUserInfo] = useState(initialFormState);
+    const [newUserInfo, setNewUserInfo] = useState(initialFormState);
     const [errors, setErrors] = useState(initialFormState);
     const [passwordsDontMatch, setPasswordsDontMatch] = useState(false);
     const [buttonOff, setButtonOff] = useState(true);
+    const {push} = useHistory();
 
     const formSchema = yup.object().shape({
         firstName: yup.string().required("Please enter your first name"),
@@ -28,7 +30,7 @@ const SignUpForm = () => {
     const handleChanges = e => {
         e.persist();
         e.preventDefault();
-        SetNewUserInfo({...newUserInfo, [e.target.name]: e.target.value });
+        setNewUserInfo({...newUserInfo, [e.target.name]: e.target.value });
 
         yup
       .reach(formSchema, e.target.name)
@@ -72,11 +74,14 @@ const SignUpForm = () => {
                 {errors.confirmPassword.length > 0 ? <p className="error">{errors.confirmPassword}</p> : null}
                 {passwordsDontMatch ? <p>The passwords you entered do not match</p> : null}
                 <div className="buttons">
-                    <button>Cancel</button>
-                    <button disabled={buttonOff} type="submit">Next</button>  
+                    <button onClick={(e)=>{
+                        e.preventDefault();
+                        //push back to home page
+                    }}><a href="#">Cancel</a></button>
+                    <button disabled={buttonOff} type="submit"><a href="#">Next</a></button>
                 </div>
             </form>
-            <div>
+            <div onClick={()=>push("/login")}>
                 <p>Already have an account? 
                     <span><a href="#"> Log in</a></span>
                 </p>

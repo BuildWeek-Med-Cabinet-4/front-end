@@ -22,8 +22,16 @@ input::placeholder {
   font-size: 1.5rem;
 }
 
-.sign-up h2 {
+h2 {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+button a {
+  color: white;
 }
 
 .buttons {
@@ -44,6 +52,13 @@ input::placeholder {
 }
 
 .sign-up {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.login {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
