@@ -1,34 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react'
 import './App.css';
-import SignUpForm from './components/SignUpForm';
-import LoginForm from "./components/LoginForm";
+import { Link, Route } from 'react-router-dom';
+import Home from './components/Home'
+import Account from './components/Account'
 
 function App() {
 
-  const [loginActive, setLoginActive] = useState(true);
+
   
 
   return (
-    
-      <div className="App">
-        <header>
-          
-          <h2 className={loginActive ? "active" : null} onClick={(e)=>{
-            e.preventDefault();
-            setLoginActive(true);
-            }}>Log in</h2>
-          
-          
-          <h2 className={loginActive ? "" : "active"} onClick={(e)=>{
-            e.preventDefault();
-            setLoginActive(false);
-            }}>Sign Up</h2>
-        
-        </header>
-        {loginActive ? <LoginForm /> : <SignUpForm />}
-        
-      </div>
-    
+    <nav>
+      <Link to = '/'>Home</Link>
+      <Link to  = '/MyAccount'>Account</Link>
+
+      <Route exact path = '/' component = {Home}></Route>
+      <Route path = '/MyAccount' component = {Account}></Route>
+      
+    </nav>
   );
 }
 
