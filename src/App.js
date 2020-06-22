@@ -10,14 +10,18 @@ function App() {
   
 
   return (
-    <nav>
-      <Link to = '/'>Home</Link>
-      <Link to  = '/MyAccount'>Account</Link>
+    <div >
 
-      <Route exact path = '/' component = {Home}></Route>
-      <Route path = '/MyAccount' component = {Account}></Route>
+      <nav class="nav-bar">
+        
+        <Link to = '/'>Home</Link>
+        <Link to  = '/MyAccount'>Account</Link>
+      </nav>
+        <Route exact path = '/' component = {Home}></Route>
+        <Route path = '/MyAccount' component = {Account}></Route>
+    
       
-    </nav>
+    </div>
   );
 }
 

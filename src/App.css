@@ -90,3 +90,64 @@ header {
   border-bottom: 2px solid green;
 }
 
+
+
+/*Esteban's Styling*/
+
+/*Home page Styling*/
+.jumbotron-container{
+  background-image: url('https://www.marijuanaventure.com/wp-content/uploads/2017/06/DSC_0047-e1498495191210.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  text-align: right;
+  border-radius: 8px;
+  border: dotted purple 1px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  color: white;
+}
+
+.explore-h3{
+  text-align: center;
+}
+
+.display-3{
+  margin-top: 0;
+  padding: 0 15px 15px 0; 
+}
+
+/*nav-bar styling*/
+nav{
+  background-color: green;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.nav-bar > a{
+  margin-left: 5%;
+  text-decoration: none;
+  color: white;
+
+}
+.nav-bar > a:hover{
+  
+  color: white ;
+  text-decoration: underline purple;
+
+}
+
+/* Strain Explorer Nav */
+
+.explore-nav{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.explore-nav>a{
+  margin: 5px 15px 5px 15px;
+
+}
