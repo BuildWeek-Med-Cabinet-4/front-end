@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+//component imports
+import Pagination from './Pagination'
 import Posts from './Posts'; 
 import axios from 'axios';
 
 
 const Home = () => {
 
-const [allStrains, setAllStrains] = useState(' ');
 
-
-//Declaring states
-const [posts, setPosts] = useState([]);
-const [loading, setLoading] = useState(false);
-const [currentPage, setCurrentPage] = useState(1);
-const[postsPerPage, setPostsPerPage] = useState(10);
 
 useEffect(()=>{
   const fetchPosts = async () =>{
@@ -29,14 +24,23 @@ useEffect(()=>{
   fetchPosts();
 },[]);
 
-
-
+//Declaring states
+const [posts, setPosts] = useState([]);
+const [loading, setLoading] = useState(false);
+const [currentPage, setCurrentPage] = useState(1);
+const[postsPerPage, setPostsPerPage] = useState(100);
+//get current posts
+const indexOfLastPost = currentPage*postsPerPage;
+const indexOfFirstPost = indexOfLastPost-postsPerPage;
+const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+//Pagination
+const paginate = pageNumber => setCurrentPage(pageNumber)
 
 
 
   return (
     
-    <Router>
+    
       <div>
         <div className = 'jumbotron-container'>
         
@@ -44,37 +48,31 @@ useEffect(()=>{
         <Jumbotron fluid>
           <Container fluid >
             <h1 className="display-3">Medical Cabinet</h1>
-            <p className="lead">Welcome to Med Cabinet!</p>
+            <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. </p>
           </Container>
         </Jumbotron>
         
         
         </div>
         
-        <h3 className = 'explore-h3'>Search By:</h3>
+        <br></br>
+        
         <hr></hr>
-        <div className="search-component">
-        
-          <nav className = 'explore-nav'>
-          
-            <Link to = '/all_strains'>All Strains</Link>
-            
-          
-          </nav>
-        
+        <br></br>
+        <hr></hr>
       
-          <div>
-          
-            <Route exact path= '/all_strains' component = {Posts}></Route>
-          
-          <Posts posts={posts} loading = {loading}/>
+      
+          <div className = 'search-component'>
 
+          <h2 className = 'browse-title'>Browse All Strains</h2>
+          <Posts posts={currentPosts} loading = {loading}  />
+          <Pagination postsPerPage = {postsPerPage} totalPosts = {posts.length} paginate={paginate}/>
 
           </div>
-        </div>
+        
       
       </div>
-    </Router>
+    
   );
 };
 
