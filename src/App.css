@@ -1,6 +1,7 @@
 body{
   max-width: 1200px;
   margin: 0 auto;
+  
 }
 
 .App {
@@ -100,6 +101,9 @@ header {
 /*Esteban's Styling*/
 
 /*Universal Styling*/
+.med-title{
+  font-family: 'Ubuntu', sans-serif;
+}
 
 hr{
   margin: 0 auto;
@@ -172,17 +176,29 @@ nav{
 }
 
 
-/* Strain Explorer Nav */
-
-.explore-nav{
-  background-color: white;
-  display: flex;
-  justify-content: center;
+/* Strain Explorer */
+.effects-label{
+  display: inline-block;
+  margin-left: 8%;
+  margin-bottom: 1%;
+  text-align: center;
+  width: 50px;
 }
 
-.explore-nav>a{
-  margin: 5px 15px 5px 15px;
+.flavors{
+  width: 900px;
+}
 
+.flavors-label{
+  display: inline-block;
+  width: 50px;
+  margin-left: 8%;
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+.strain-type{
+  width: 900px;
 }
 
 .strain-span{
