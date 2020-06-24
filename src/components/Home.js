@@ -22,7 +22,7 @@ const Home = (props) => {
     
     <h3 className = 'explore-h3'>Search By:</h3>
 
-    <div class="search-component">
+    <div className="search-component">
     <nav className = 'explore-nav'>
     <Link to = '/search_all_strains'>All Strains</Link>
     <Link to = '/search_symptom'>Symptoms</Link>
