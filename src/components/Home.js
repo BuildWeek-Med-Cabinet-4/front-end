@@ -1,39 +1,80 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
-import {Route, Link} from 'react-router-dom';
-import Strains from './Strains';
-import Symptoms from './Symptoms';
-import Effects from './Effects'
-const Home = (props) => {
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Posts from './Posts'; 
+import axios from 'axios';
+
+
+const Home = () => {
+
+const [allStrains, setAllStrains] = useState(' ');
+
+
+//Declaring states
+const [posts, setPosts] = useState([]);
+const [loading, setLoading] = useState(false);
+const [currentPage, setCurrentPage] = useState(1);
+const[postsPerPage, setPostsPerPage] = useState(10);
+
+useEffect(()=>{
+  const fetchPosts = async () =>{
+    setLoading(true);
+    const res = await axios.get('https://best-med-cabinet.herokuapp.com/api/products');
+    console.log(res.data)
+    setPosts(res.data);
+    setLoading(false);
+
+  }
+
+  fetchPosts();
+},[]);
+
+
+
+
+
+
   return (
-    <div>
+    
+    <Router>
+      <div>
         <div className = 'jumbotron-container'>
-    
-    
-          <Jumbotron fluid>
-            <Container fluid >
-              <h1 className="display-3">Medical Cabinet</h1>
-              <p className="lead">Welcome to Med Cabinet!</p>
-            </Container>
-          </Jumbotron>
-    
-          
+        
+        
+        <Jumbotron fluid>
+          <Container fluid >
+            <h1 className="display-3">Medical Cabinet</h1>
+            <p className="lead">Welcome to Med Cabinet!</p>
+          </Container>
+        </Jumbotron>
+        
+        
         </div>
-    
-    <h3 className = 'explore-h3'>Search By:</h3>
+        
+        <h3 className = 'explore-h3'>Search By:</h3>
+        <hr></hr>
+        <div className="search-component">
+        
+          <nav className = 'explore-nav'>
+          
+            <Link to = '/all_strains'>All Strains</Link>
+            
+          
+          </nav>
+        
+      
+          <div>
+          
+            <Route exact path= '/all_strains' component = {Posts}></Route>
+          
+          <Posts posts={posts} loading = {loading}/>
 
-    <div class="search-component">
-    <nav className = 'explore-nav'>
-    <Link to = '/search_all_strains'>All Strains</Link>
-    <Link to = '/search_symptom'>Symptoms</Link>
-    <Link to = '/search_effect'>Effects</Link>
-    </nav>
-    <Route exact path= '/search_all_strains' component = {Strains}></Route>
-    <Route path= '/search_symptom' component = {Symptoms}></Route>
-    <Route path= '/search_effect' component = {Effects}></Route>
-    </div>
 
-    </div>
+          </div>
+        </div>
+      
+      </div>
+    </Router>
   );
 };
 

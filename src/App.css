@@ -1,3 +1,7 @@
+body{
+  max-width: 1200px;
+}
+
 .App {
   display: flex;
   flex-flow: column nowrap;
@@ -94,6 +98,13 @@ header {
 
 /*Esteban's Styling*/
 
+/*Universal Styling*/
+
+hr{
+  margin: 0 auto;
+  width: 35%;
+  color: purple
+}
 /*Home page Styling*/
 .jumbotron-container{
   background-image: url('https://www.marijuanaventure.com/wp-content/uploads/2017/06/DSC_0047-e1498495191210.jpg');
@@ -124,13 +135,16 @@ nav{
   background-color: green;
   padding-top: 15px;
   padding-bottom: 15px;
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 0 0 7px 7px ;
 }
 
 .nav-bar > a{
   margin-left: 5%;
   text-decoration: none;
   color: white;
-
+  
 }
 .nav-bar > a:hover{
   
@@ -149,5 +163,25 @@ nav{
 
 .explore-nav>a{
   margin: 5px 15px 5px 15px;
+
+}
+
+.all-strains-container{
+  width: 85%;
+  max-width: 85%;
+  padding: 5%;
+  border: dotted purple 1px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+
+.all-strains-child{
+  min-width: 150px;
+  height: 250px;
+  margin-left: 1%;
+  border: 1px dotted black;
 
 }

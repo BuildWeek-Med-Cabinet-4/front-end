@@ -12,11 +12,13 @@ function App() {
   return (
     <div >
 
-      <nav class="nav-bar">
+      <nav className="nav-bar">
         
         <Link to = '/'>Home</Link>
         <Link to  = '/MyAccount'>Account</Link>
+      
       </nav>
+
         <Route exact path = '/' component = {Home}></Route>
         <Route path = '/MyAccount' component = {Account}></Route>
     
