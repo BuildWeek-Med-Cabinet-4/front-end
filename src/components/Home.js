@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
 
+
 //component imports
 import Pagination from './Pagination'
 import Posts from './Posts'; 
@@ -35,6 +36,7 @@ const indexOfFirstPost = indexOfLastPost-postsPerPage;
 const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 //Pagination
 const paginate = pageNumber => setCurrentPage(pageNumber)
+
 
 
 
@@ -73,6 +75,22 @@ const paginate = pageNumber => setCurrentPage(pageNumber)
       
       </div>
     
+
+    <h3 className = 'explore-h3'>Search By:</h3>
+
+    <div className="search-component">
+    <nav className = 'explore-nav'>
+    <Link to = '/search_all_strains'>All Strains</Link>
+    <Link to = '/search_symptom'>Symptoms</Link>
+    <Link to = '/search_effect'>Effects</Link>
+    </nav>
+    <Route exact path= '/search_all_strains' component = {Strains}></Route>
+    <Route path= '/search_symptom' component = {Symptoms}></Route>
+    <Route path= '/search_effect' component = {Effects}></Route>
+    </div>
+
+    </div>
+
   );
 };
 

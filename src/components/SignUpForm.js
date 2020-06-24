@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
+import {useHistory} from 'react-router-dom'
 
 const SignUpForm = () => {
+  const {push} = useHistory();
     const initialFormState = {
         firstName: "",
         lastName: "",
@@ -74,6 +76,7 @@ const SignUpForm = () => {
                     <button onClick={(e)=>{
                         e.preventDefault();
                         //push back to home page
+                        push("/")
                     }}>Cancel</button>
                     <button disabled={buttonOff} type="submit">Next</button>
                     
