@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron, Container } from 'reactstrap';
 import {Route, Link} from 'react-router-dom';
-import Strains from './Strains';
+import Strains from './AllStrains';
 import Symptoms from './Symptoms';
 import Effects from './Effects'
 const Home = (props) => {

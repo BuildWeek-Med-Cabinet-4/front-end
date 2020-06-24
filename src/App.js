@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './components/Home';
@@ -6,6 +6,8 @@ import Identify from './components/Identify'
 import { appContext } from './contexts/appContext';
 import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
+import axios from 'axios';
+import AllStrains from './components/AllStrains';
 
 
 function App() {
@@ -17,12 +19,23 @@ function App() {
     return false;
   }
   const [isLoggedIn, setIsLoggedIn] = useState(loggedIn());
+  const [allStrains, setAllStrains] = useState([]);
+
+  useEffect(()=>{
+    axios
+      .get("https://best-med-cabinet.herokuapp.com/api/products")
+      .then(res=>{
+        console.log("all strains", res);
+        setAllStrains(res.data);
+      })
+      .catch(err=>console.log(err))
+  },[]) 
   
 
   return (
     <Router>
     <div >
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn}}>
+      <appContext.Provider value = {{isLoggedIn: isLoggedIn, allStrains: allStrains}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>
@@ -32,6 +45,7 @@ function App() {
           
           <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
           <Route path = '/identify/' ><Identify /></Route>
+          <Route path = '/all-strains' component={AllStrains} />
           <Route exact path = '/' component = {Home}></Route>
         </Switch>
         

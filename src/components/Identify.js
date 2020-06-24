@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {Route, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import SignUpForm from './SignUpForm';
 import LoginForm from "./LoginForm";
 import { appContext } from '../contexts/appContext';
