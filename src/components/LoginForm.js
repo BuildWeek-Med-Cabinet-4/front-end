@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
+import {useHistory} from 'react-router-dom';
 
 
 const Login = () => {
+
+  const {push} = useHistory();
 
     const initialFormState = {
         email: "",
@@ -60,6 +63,7 @@ const Login = () => {
                 <button onClick={(e)=>{
                         e.preventDefault();
                         //push back to home page
+                        push("/")
                     }}>Go Back</button>
                     <button disabled={buttonOff} type="submit">Log in</button>  
                 </div>
