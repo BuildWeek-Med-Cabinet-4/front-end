@@ -2,8 +2,11 @@ import React, {useContext} from 'react';
 import { appContext } from '../contexts/appContext';
 import {Link} from 'react-router-dom';
 
+
+
 export default function Strains() {
     const allStrains = useContext(appContext).allStrains;
+    
     return (
         <div className="all-strains">
             {allStrains.map(strain => (

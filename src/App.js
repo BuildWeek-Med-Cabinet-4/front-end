@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
-import { Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link  } from "react-router-dom";
 import Home from './components/Home';
-import Account from './components/Account';
+import Identify from './components/Identify'
 import StrainFinder from './StrainFinder';
+import { appContext } from './contexts/appContext';
+import UserAccount from './components/UserAccount'
+import PrivateRoute from './components/PrivateRoute';
+import axios from 'axios';
+import AllStrains from './components/AllStrains';
 
 function App() {
 
@@ -30,18 +35,20 @@ function App() {
   return (
     <Router>
     <div >
-
+    <appContext.Provider value = {{isLoggedIn: isLoggedIn, allStrains: allStrains}}>
       <nav className="nav-bar">
         
         <Link to = '/'>Home</Link>
-        <Link to  = '/MyAccount'>Account</Link>
+        <Link to  = '/identify'>Account</Link>
         <Link to  = '/StrainFinder'>Strain Finder</Link>
       </nav>
 
         <Route exact path = '/' component = {Home}></Route>
-        <Route path = '/MyAccount' component = {Account}></Route>
+        <Route path = '/identify' component = {Identify}></Route>
         <Route path = '/StrainFinder' component = {StrainFinder}></Route>
-
+        <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
+        <Route path = '/all-strains' component={AllStrains} />
+    </appContext.Provider>
       
     </div>
     </Router>

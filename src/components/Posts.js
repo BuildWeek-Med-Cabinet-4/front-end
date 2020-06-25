@@ -3,7 +3,7 @@ import {} from 'reactstrap';
 
 
 
-export default function Posts({ posts, loading }) {
+function Posts({ posts, loading }) {
 
     console.log(posts)
 
@@ -29,3 +29,5 @@ export default function Posts({ posts, loading }) {
         </section>
     )
 }
+
+export default Posts;
