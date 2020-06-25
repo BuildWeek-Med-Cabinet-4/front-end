@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import { BrowserRouter as Router, Route, Link  } from "react-router-dom";
 import Home from './components/Home';
 import Identify from './components/Identify'
+import StrainFinder from './StrainFinder';
 import { appContext } from './contexts/appContext';
 import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
 import axios from 'axios';
 import AllStrains from './components/AllStrains';
-import StrainFinder from './StrainFinder';
-
 
 function App() {
 
@@ -36,6 +36,7 @@ function App() {
   return (
     <Router>
     <div >
+
       <appContext.Provider value = {{isLoggedIn: isLoggedIn, allStrains: allStrains}}>
         <nav className="nav-bar">
           
@@ -50,9 +51,11 @@ function App() {
           <Route exact path = '/' component = {Home}></Route>
           <Route path = '/StrainFinder' component = {StrainFinder}></Route>
         
-        
-        </appContext.Provider>
+
       
+      </appContext.Provider>
+      
+    
     </div>
     </Router>
   );
