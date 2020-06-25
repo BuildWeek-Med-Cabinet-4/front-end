@@ -17,9 +17,10 @@ const allFlavors = ['earthy', 'sweet', 'citrus', 'pungent', 'berry', 'pine', 'fl
 
 //Setting form data slices of state
 const [formData, setFormData] = useState ({
-    strain_type: '',
-    strain_effects: '',
-    strain_flavors: ''
+    Type: '',
+    Effects: [],
+    Flavor: [],
+    Description: ""
   });
 
 
@@ -50,9 +51,9 @@ const [formData, setFormData] = useState ({
             <div className = 'strain-type'>
                     <h3>Choose a strain type:</h3>
                     <select>
-                        <option>Indica</option>
-                        <option>Sativa</option>
-                        <option>Hybrid</option>
+                        <option value="Indica">Indica</option>
+                        <option value="Sativa">Sativa</option>
+                        <option value="Hybrid">Hybrid</option>
                     </select>
                 </div>
 
@@ -73,6 +74,8 @@ const [formData, setFormData] = useState ({
                         </label>
                     ))}
                 </div>
+                <h3>Please provide a brief description of what use you need from the strain</h3>
+                <input type="textbox" name="Description" value={formData.Description} />
 
                 
 

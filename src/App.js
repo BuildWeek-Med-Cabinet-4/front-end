@@ -21,13 +21,17 @@ function App() {
   }
   const [isLoggedIn, setIsLoggedIn] = useState(loggedIn());
 
+  const addToMyStrains = () => {
+    return "hello"
+  }
+
   
 
   return (
     <Router>
     <div >
 
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn}}>
+      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>
