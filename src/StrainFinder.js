@@ -17,14 +17,44 @@ const allFlavors = ['earthy', 'sweet', 'citrus', 'pungent', 'berry', 'pine', 'fl
 
 //Setting form data slices of state
 const [formData, setFormData] = useState ({
+    UserID: 1000,
+    Strain: "Hello",
     Type: '',
     Effects: [],
     Flavor: [],
     Description: ""
   });
 
+  const updateEffects = (e) => {
+    if(e.target.checked) {
+        formData.Effects.push(e.target.name)
+    } else {
+        const effectToRemoveIndex = formData.Effects.indexOf(e.target.name);
+        formData.Effects.splice(effectToRemoveIndex, 1);
+    }
+    console.log("value of checckeed", e.target.checked)
+    console.log("updates",formData)
+  }
+
+  const updateFlavors = e => {
+    if(e.target.checked) {
+        formData.Flavor.push(e.target.name)
+    } else {
+        const flavorToRemoveIndex = formData.Effects.indexOf(e.target.name);
+        formData.Flavor.splice(flavorToRemoveIndex, 1);
+    }
+    console.log("value of checckeed", e.target.checked)
+    console.log("updates",formData)
+  }
+  
 
 
+  const handleChanges = e => {
+    e.persist();
+    e.preventDefault();
+    setFormData({...formData, [e.target.name]: e.target.value });
+    console.log("updates",formData)
+}
 
 
 
@@ -50,7 +80,8 @@ const [formData, setFormData] = useState ({
 
             <div className = 'strain-type'>
                     <h3>Choose a strain type:</h3>
-                    <select>
+                    <select name="Type" value={formData.Type} onChange={handleChanges}>
+                        <option value="">--Select--</option>
                         <option value="Indica">Indica</option>
                         <option value="Sativa">Sativa</option>
                         <option value="Hybrid">Hybrid</option>
@@ -61,21 +92,22 @@ const [formData, setFormData] = useState ({
                     <h3>choose some effects:</h3>
                 
                     {allEffects.map(effect=>(
-                        <label className = 'effects-label'>
-                        {effect}:<input className='effects-input' type='checkbox' name={effect}></input>
+                        <label className = 'effects-label' key={effect}>
+                        {effect}:<input  className='effects-input' type='checkbox' name={effect} onChange={updateEffects}></input>
                         </label>
                     ))}
                 </div>
                 <div className = 'flavors'>
                     <h3>choose some flavors</h3>
                     {allFlavors.map(flavor=>(
-                        <label className = 'flavors-label'>
-                            {flavor}:<input className = 'flavors-input' type='checkbox' name={flavor}></input>
+                        <label className = 'flavors-label' key={flavor}>
+                            {flavor}:<input className = 'flavors-input' type='checkbox' name={flavor} onChange={updateFlavors}></input>
                         </label>
                     ))}
                 </div>
-                <h3>Please provide a brief description of what use you need from the strain</h3>
-                <input type="textbox" name="Description" value={formData.Description} />
+                <h3>Please provide a brief description what you would like your strain to do for you:</h3>
+                <input type="textbox" name="Description" value={formData.Description} onChange={handleChanges}/>
+                <button type="submit" className="finder-button">Submit</button>
 
                 
 

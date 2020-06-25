@@ -9,6 +9,7 @@ import { appContext } from './contexts/appContext';
 import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
 import axios from 'axios';
+import ViewStrain from './components/ViewStrain';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
          
           <Route exact path = '/' component = {Home}></Route>
           <Route path = '/StrainFinder' component = {StrainFinder}></Route>
+          <Route path = "/strain/:id" component={ViewStrain} />
         
 
       

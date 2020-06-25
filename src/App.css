@@ -241,32 +241,72 @@ nav{
   object-fit: cover;
 }
 
-.strain-card {
-  width: 12.5%;
-  margin: 2%;
+.mystrains-button {
+  background: none;
+  border-color: purple;
+}
+
+
+
+
+
+.finder-button {
+  background: #43e06d;
+  border: none;
+  border-radius: 15px;
+  padding: 2%;
+  color: white;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+/* styling for strain page */
+
+.strain-title{
+  color: #43e06d;
+}
+
+.strain-header {
+  display: flex;
+  margin-top: 5%;
+  justify-content: space-evenly;
+  width: 100%;
+  border-top: 10px double black;
+  border-bottom: 10px double black;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.strain-header img {
+  height: 25rem;
+  width: 40%;
+}
+
+.title-container {
+  width: 40%;
+}
+
+.strain-effects {
+  display: flex;
+}
+
+.buy-strain {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 5%;
+  align-items: center;
+}
+
+.strain-info {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+  margin-bottom: 3%;
+}
+
+.disp-info {
+  border: 5px dashed green;
   padding: 1%;
-  border: 1px solid purple;
   border-radius: 10px;
 }
-
-.strain-card img {
-  height: 10rem;
-  border-radius: 20px;
-  width: 100%;
-}
-
-.all-strains {
-  margin: 2%;
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.strain-card button {
-  border: none;
-  padding: 3%;
-  margin-top: 4%;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 

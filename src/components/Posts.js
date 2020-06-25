@@ -29,7 +29,7 @@ function Posts({ posts, loading }) {
                         <h6 ><span className = 'strain-span'>Strain Name: </span>{post.strain_name}</h6>
                         <Link to={`/strain/${post.id}`} style={{textDecoration: "none"}}>more info</Link>
                         <div>
-                        <button onClick={(e)=>{
+                        <button className="mystrains-button" onClick={(e)=>{
                             e.preventDefault();
                             if(isLoggedIn) {
                                 addToMyStrains();
