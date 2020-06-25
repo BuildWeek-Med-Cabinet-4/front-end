@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
-import Strains from './AllStrains';
 import {  Route, Link } from "react-router-dom";
 
 
@@ -78,18 +77,9 @@ const paginate = pageNumber => setCurrentPage(pageNumber)
     </div>
     
 
-    <h3 className = 'explore-h3'>Search By:</h3>
-
-    <div className="search-component">
-    <nav className = 'explore-nav'>
-    <Link to = '/search_all_strains'>All Strains</Link>
-    <Link to = '/search_symptom'>Symptoms</Link>
-    <Link to = '/search_effect'>Effects</Link>
-    </nav>
-    <Route exact path= '/search_all_strains' component = {Strains}/>
+    
+    
    
-    </div>
-
     </div>
 
   );
