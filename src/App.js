@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from './components/Home';
 import Identify from './components/Identify'
 import { appContext } from './contexts/appContext';
@@ -8,6 +8,7 @@ import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
 import axios from 'axios';
 import AllStrains from './components/AllStrains';
+import StrainFinder from './StrainFinder';
 
 
 function App() {
@@ -41,13 +42,14 @@ function App() {
           <Link to = '/'>Home</Link>
           <Link to  = '/identify'>Account</Link>
         </nav>
-        <Switch>
+        
           
           <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
           <Route path = '/identify/' ><Identify /></Route>
           <Route path = '/all-strains' component={AllStrains} />
           <Route exact path = '/' component = {Home}></Route>
-        </Switch>
+          <Route path = '/StrainFinder' component = {StrainFinder}></Route>
+        
         
         </appContext.Provider>
       

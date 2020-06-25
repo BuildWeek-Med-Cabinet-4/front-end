@@ -8,14 +8,13 @@ const SignUpForm = () => {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     }
     const [newUserInfo, setNewUserInfo] = useState(initialFormState);
     const [errors, setErrors] = useState(initialFormState);
     const [passwordsDontMatch, setPasswordsDontMatch] = useState(false);
     const [buttonOff, setButtonOff] = useState(true);
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
     const formSchema = yup.object().shape({
         firstName: yup.string().required("Please enter your first name"),
@@ -24,10 +23,7 @@ const SignUpForm = () => {
           .string()
           .email("Must be a valid email address")
           .required("Please enter an email address"),
-        password: yup.string().required("Please create a password")
-      });
-
-      const confirmPasswordSchema = yup.object().shape({
+        password: yup.string().required("Please create a password"),
         confirmPassword: yup.string().required("Please confirm your password")
       });
 
@@ -45,20 +41,6 @@ const SignUpForm = () => {
       .catch(err => setErrors({ ...errors, [e.target.name]: err.errors[0] }));
     }
 
-    const confirmPasswordChanges = e => {
-      e.persist();
-      e.preventDefault();
-      setConfirmPassword(e.target.value);
-
-      yup
-    .reach(confirmPasswordSchema, e.target.name)
-    .validate(e.target.value)
-    .then(valid => {
-      setConfirmPasswordError("");
-    })
-    .catch(err => setConfirmPasswordError(err.errors[0] ));
-  }
-
     useEffect(() => {
         formSchema.isValid(newUserInfo).then(valid => {
           console.log("valid?", valid);
@@ -68,7 +50,7 @@ const SignUpForm = () => {
 
       const createUser = e => {
           e.preventDefault();
-          if(newUserInfo.password !== confirmPassword) {
+          if(newUserInfo.password !== newUserInfo.confirmPassword) {
               setPasswordsDontMatch(true);
           } else {
               setPasswordsDontMatch(false);
@@ -87,8 +69,8 @@ const SignUpForm = () => {
                 {errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
                 <input type="password" name="password" placeholder="Create a password" value={newUserInfo.password} onChange={handleChanges}/>
                 {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
-                <input type="password" name="confirmPassword" placeholder="Re-type your password" value={confirmPassword} onChange={confirmPasswordChanges} />
-                {confirmPasswordError.length > 0 ? <p className="error">{confirmPasswordError}</p> : null}
+                <input type="password" name="confirmPassword" placeholder="Re-type your password" value={newUserInfo.confirmPassword} onChange={handleChanges} />
+                {errors.confirmPassword.length > 0 ? <p className="error">{errors.confirmPassword}</p> : null}
                 {passwordsDontMatch ? <p>The passwords you entered do not match</p> : null}
                 <div className="buttons">
                     <button onClick={(e)=>{

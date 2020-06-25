@@ -7,9 +7,10 @@ import { appContext } from '../contexts/appContext';
 
 
 export default function Identify() {
+    const isLoggedIn = useContext(appContext).isLoggedIn; 
 
     const [loginTabActive, setLoginTabActive] = useState(true);
-    const isLoggedIn = useContext(appContext).isLoggedIn;   
+     
     const {push} = useHistory();
 
     if(isLoggedIn) {
