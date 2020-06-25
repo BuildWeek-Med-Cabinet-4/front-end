@@ -13,11 +13,6 @@ export default function Identify() {
      
     const {push} = useHistory();
 
-    if(isLoggedIn) {
-        push('/myaccount/{current user id}');
-        //need update line above once we get login post api data
-    }
-
 
     return (
     

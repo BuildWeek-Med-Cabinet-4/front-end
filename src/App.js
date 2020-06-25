@@ -35,8 +35,9 @@ function App() {
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>
-          <Link to  = '/identify'>Account</Link>
+          {isLoggedIn ? <Link to  = "/myaccount/{current user id}">My Account</Link> : <Link to="/identify">Sign up/Log in</Link>}
           <Link to  = '/StrainFinder'>Strain Finder</Link>
+          {isLoggedIn ? <span>Hello, <Link to="/myaccount/{current user id}">Current user name</Link></span> : null}
         </nav>
         
           
