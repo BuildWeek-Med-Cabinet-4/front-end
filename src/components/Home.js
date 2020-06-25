@@ -87,8 +87,7 @@ const paginate = pageNumber => setCurrentPage(pageNumber)
     <Link to = '/search_effect'>Effects</Link>
     </nav>
     <Route exact path= '/search_all_strains' component = {Strains}/>
-    {/* <Route path= '/search_symptom' component = {Symptoms}></Route>
-    <Route path= '/search_effect' component = {Effects}></Route> */}
+   
     </div>
 
     </div>

@@ -42,6 +42,7 @@ function App() {
           
           <Link to = '/'>Home</Link>
           <Link to  = '/identify'>Account</Link>
+          <Link to  = '/StrainFinder'>Strain Finder</Link>
         </nav>
         
           
