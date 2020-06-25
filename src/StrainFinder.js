@@ -61,7 +61,7 @@ const [formData, setFormData] = useState ({
                 
                     {allEffects.map(effect=>(
                         <label className = 'effects-label'>
-                        {effect}:<input className='effects-input' type='checkbox' name='theName'></input>
+                        {effect}:<input className='effects-input' type='checkbox' name={effect}></input>
                         </label>
                     ))}
                 </div>
@@ -69,7 +69,7 @@ const [formData, setFormData] = useState ({
                     <h3>choose some flavors</h3>
                     {allFlavors.map(flavor=>(
                         <label className = 'flavors-label'>
-                            {flavor}:<input className = 'flavors-input' type='checkbox' ></input>
+                            {flavor}:<input className = 'flavors-input' type='checkbox' name={flavor}></input>
                         </label>
                     ))}
                 </div>
