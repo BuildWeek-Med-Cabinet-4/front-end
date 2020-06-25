@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
+
+
+function StrainFinder() {
+
+    //List of all Effects
+
 //List of all Effects
+
 const allEffects = [ 'happy', 'euphoric', 'relaxed', 'uplifted', 'sleepy', 'creative', 'energetic', 'focus', 'focus', 'hungry', 'talkative', 'uplift', 'tingly', 'giggly', 'relax', 'arouse', 'focused', 'aroused'];
 //List of all Flavors
 const allFlavors = ['earthy', 'sweet', 'citrus', 'pungent', 'berry', 'pine', 'flowery', 'woody', 'diesel', 'spicy', 'herbal', 'lemon', 'skunk', 'tropical', 'blueberry', 'grape', 'orange', 'cheese', 'pepper', 'lime', 'strawberry', 'minty', 'pineapple', 'sage', 'grapefruit', 'lavender', 'chemical', 'vanilla', 'mango', 'honey', 'tree', 'fruit', 'ammonia', 'nutty', 'coffee', 'menthol', 'butter', 'mint', ' tea ', 'apple', 'rise', 'blue', 'apricot', 'tobacco', 'violet', 'chestnut', ' tar ', 'peach', 'pear', 'plum']
@@ -14,12 +23,8 @@ const [formData, setFormData] = useState ({
   });
 
 
-export default function StrainFinder() {
 
 
-    //List of Effects
-    
-    //List of Flavors
 
 
     useEffect(()=>{
@@ -75,3 +80,6 @@ export default function StrainFinder() {
         </div>
     )
 }
+
+
+export default StrainFinder;
