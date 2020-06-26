@@ -73,7 +73,7 @@ const Login = () => {
             <form className="login-form" onSubmit={logUserIn}>
                 <input type="email" name="email" placeholder="Email Address" value={credentials.email} onChange={handleChanges}/>
                 {errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
-                <input type="password" name="password" placeholder="Create a password" value={credentials.password} onChange={handleChanges}/>
+                <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChanges}/>
                 {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
                 <div className="buttons">
                 <button onClick={(e)=>{

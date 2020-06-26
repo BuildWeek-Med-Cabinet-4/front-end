@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
-
+import axiosWithAuth from "./utils/axiosWithAuth"
 import { BrowserRouter as Router, Route, Link  } from "react-router-dom";
 import Home from './components/Home';
 import Identify from './components/Identify'
@@ -8,12 +8,24 @@ import StrainFinder from './StrainFinder';
 import { appContext } from './contexts/appContext';
 import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
-import axios from 'axios';
 import ViewStrain from './components/ViewStrain';
 import {useHistory} from 'react-router-dom'
 
 
 function App() {
+
+  useEffect(()=>{
+    if(localStorage.getItem("Current user")) {
+      const userID = Number(localStorage.getItem("Current user"))
+      axiosWithAuth()
+        .get(`/users/${userID}`)
+        .then(res=>{
+          console.log("current use", res)
+          setCurrentUser(res.data);
+        })
+        .catch(err=>console.log(err))
+    }
+  }, [])
 
   const loggedIn = () => {
     if(localStorage.getItem("Logged in") === "true") {
