@@ -29,15 +29,12 @@ function Posts({ posts, loading }) {
                         <h6 ><span className = 'strain-span'> </span>{post.strain_name}</h6>
                         <Link to={`/strain/${post.id}`}>more info</Link>
                         <div>
-                        <button className="mystrains-button" onClick={(e)=>{
+                        {isLoggedIn ? <button className="mystrains-button" onClick={(e)=>{
                             e.preventDefault();
-                            if(isLoggedIn) {
-                                addToMyStrains();
-                            } else {
-                                alert("You must be logged in to do that")
-                                
-                            }
-                        }}>Add to My Strains</button>
+                            addToMyStrains(post.id);
+                            
+                        }}>Add to My Strains</button> : null}
+                        
                         </div>
                         
                         

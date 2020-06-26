@@ -5,7 +5,9 @@ import {appContext} from '../contexts/appContext';
 import axios from 'axios';
 
 
+
 const Login = () => {
+  
 
   const {push} = useHistory();
   const setCurrentUser = useContext(appContext).setCurrentUser;
@@ -70,7 +72,14 @@ const Login = () => {
 
     return (
         <div className="login">
-            <form className="login-form" onSubmit={logUserIn}>
+            <form className="login-form" onSubmit={logUserIn} onKeyPress={(e)=>{
+              
+                if (e.key === "Enter" || e.key === "NumpadEnter") {
+                  e.preventDefault();
+                  console.log("Enter key was pressed. Run your function.");
+                  logUserIn(e);
+                }
+            }}>
                 <input type="email" name="email" placeholder="Email Address" value={credentials.email} onChange={handleChanges}/>
                 {errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
                 <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChanges}/>

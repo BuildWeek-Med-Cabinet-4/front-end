@@ -197,15 +197,11 @@ const formSchema = yup.object().shape({
                         <h6 ><span className = 'strain-span'>Strain Name: </span>{recommendation.strain_name}</h6>
                         <Link to={`/strain/${recommendation.id}`} style={{textDecoration: "none"}}>more info</Link>
                         <div>
-                        <button className="mystrains-button" onClick={(e)=>{
+                        {isLoggedIn ? <button className="mystrains-button" onClick={(e)=>{
                             e.preventDefault();
-                            if(isLoggedIn) {
-                                addToMyStrains();
-                            } else {
-                                alert("You must be logged in to do that")
-                                
-                            }
-                        }}>Add to My Strains</button>
+                            addToMyStrains(recommendation.id);
+                            
+                        }}>Add to My Strains</button> : null}
                         </div>
             </div> : null}
         </div>

@@ -37,9 +37,15 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const {push} = useHistory();
 
-  const addToMyStrains = () => {
-    return "hello";
+  const addToMyStrains = (id) => {
+    const strainToAdd = {user_id: currentUser.id, product_id: id}
+    axiosWithAuth()
+      .post("/users/auth/cart", strainToAdd)
+      .then(res=>{
+        console.log("add strain res", res)
+      })
   }
+
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -56,7 +62,7 @@ function App() {
     <Router>
     <div >
 
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn, setCurrentUser: setCurrentUser}}>
+      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn, currentUser: currentUser, setCurrentUser: setCurrentUser}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>
@@ -66,7 +72,7 @@ function App() {
         </nav>
         
           
-          <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
+          <PrivateRoute exact path = '/myaccount/:id' component={UserAccount}/>
           <Route exact path = '/identify' ><Identify /></Route>
          
          

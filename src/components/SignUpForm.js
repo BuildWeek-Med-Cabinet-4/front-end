@@ -100,7 +100,14 @@ const SignUpForm = () => {
     
     return (
         <div className="sign-up">
-            <form onSubmit={createUser} className="signup-form">
+            <form onSubmit={createUser} className="signup-form" onKeyPress={(e)=>{
+              
+              if (e.key === "Enter" || e.key === "NumpadEnter") {
+                e.preventDefault();
+                console.log("Enter key was pressed. Run your function.");
+                createUser(e);
+              }
+            }}>
                 <input type="text" name="firstName" placeholder="First Name"  value={newUserInfo.firstName} onChange={handleChanges}/>
                 {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
                 <input type="text" name="lastName" placeholder="Last Name" value={newUserInfo.lastName} onChange={handleChanges}/>
