@@ -6,6 +6,7 @@ import {appContext} from '../contexts/appContext';
 
 const SignUpForm = () => {
    const setIsLoggedIn = useContext(appContext).setIsLoggedIn;
+   const setCurrentUser = useContext(appContext).setCurrentUser;
   const {push} = useHistory();
     const initialFormState = {
       firstName: "",
@@ -85,6 +86,7 @@ const SignUpForm = () => {
                 .then(res=>{
                   console.log("login res", res)
                   setIsLoggedIn(true);
+                  setCurrentUser(res.data.createdUser)
                   localStorage.setItem("Logged in", true)
                   localStorage.setItem("Current user", res.data.createdUser.id)
                   localStorage.setItem("token", res.data.token)

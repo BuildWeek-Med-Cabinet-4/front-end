@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import * as yup from 'yup';
 import {useHistory} from 'react-router-dom';
+import {appContext} from '../contexts/appContext';
+import axios from 'axios';
 
 
 const Login = () => {
 
   const {push} = useHistory();
+  const setCurrentUser = useContext(appContext).setCurrentUser;
 
     const initialFormState = {
         email: "",
@@ -15,6 +18,7 @@ const Login = () => {
     const [credentials, setCredentials] = useState(initialFormState);
     const [errors, setErrors] = useState(initialFormState);
     const [buttonOff, setButtonOff] = useState(true);
+    const setIsLoggedIn = useContext(appContext).setIsLoggedIn;
  
 
     const formSchema = yup.object().shape({
@@ -50,11 +54,23 @@ const Login = () => {
       const logUserIn = e => {
           e.preventDefault();
         //axios post request and push to strainsList
+        axios
+                .post("https://best-med-cabinet.herokuapp.com/api/auth/login", credentials )
+                .then(res=>{
+                  console.log("login res", res)
+                  setIsLoggedIn(true);
+                  setCurrentUser(res.data.logged_user)
+                  localStorage.setItem("Logged in", true)
+                  localStorage.setItem("Current user", res.data.logged_user.id)
+                  localStorage.setItem("token", res.data.token)
+                  push("/");
+                })
+                .catch(err=>console.log(err));
       }
 
     return (
         <div className="login">
-            <form className="login-form">
+            <form className="login-form" onSubmit={logUserIn}>
                 <input type="email" name="email" placeholder="Email Address" value={credentials.email} onChange={handleChanges}/>
                 {errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
                 <input type="password" name="password" placeholder="Create a password" value={credentials.password} onChange={handleChanges}/>

@@ -10,6 +10,7 @@ import UserAccount from './components/UserAccount'
 import PrivateRoute from './components/PrivateRoute';
 import axios from 'axios';
 import ViewStrain from './components/ViewStrain';
+import {useHistory} from 'react-router-dom'
 
 
 function App() {
@@ -21,9 +22,20 @@ function App() {
     return false;
   }
   const [isLoggedIn, setIsLoggedIn] = useState(loggedIn());
+  const [currentUser, setCurrentUser] = useState({});
+  const {push} = useHistory();
 
   const addToMyStrains = () => {
-    return "hello"
+    return "hello";
+  }
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    localStorage.removeItem("Logged in")
+    localStorage.removeItem("Current user")
+    localStorage.removeItem("token")
+                  push("/");
   }
 
   
@@ -32,13 +44,13 @@ function App() {
     <Router>
     <div >
 
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn}}>
+      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn, setCurrentUser: setCurrentUser}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>
-          {isLoggedIn ? <Link to  = "/myaccount/{current user id}">My Account</Link> : <Link to="/identify">Sign up/Log in</Link>}
+          {isLoggedIn ? <Link to={`/myaccount/${currentUser.id}`}>My Account</Link> : <Link to="/identify">Sign up/Log in</Link>}
           <Link to  = '/StrainFinder'>Strain Finder</Link>
-          {isLoggedIn ? <span>Hello, <Link to="/myaccount/{current user id}">Current user name</Link></span> : null}
+  {isLoggedIn ? <span><span onClick={logout} className="logout">Log out</span><span style={{marginLeft: "20%", color: "white"}}>Hello, <Link to={`/myaccount/${currentUser.id}`} style={{textDecoration: "none", color: "blue"}}>{currentUser.firstName}</Link></span> </span> : null}
         </nav>
         
           
