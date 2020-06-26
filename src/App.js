@@ -47,7 +47,7 @@ function App() {
     localStorage.removeItem("Logged in")
     localStorage.removeItem("Current user")
     localStorage.removeItem("token")
-                  push("/");
+    push("/");
   }
 
   
@@ -67,11 +67,11 @@ function App() {
         
           
           <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
-          <Route path = '/identify/' ><Identify /></Route>
+          <Route exact path = '/identify' ><Identify /></Route>
          
           <Route exact path = '/' component = {Home}></Route>
-          <Route path = '/StrainFinder' component = {StrainFinder}></Route>
-          <Route path = "/strain/:id" component={ViewStrain} />
+          <Route exact path = '/StrainFinder' component = {StrainFinder}></Route>
+          <Route exact path = "/strain/:id" component={ViewStrain} />
         
 
       
