@@ -209,11 +209,20 @@ nav{
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
+  
 
 }
 
+.page-link{
+  color: white;
+  text-decoration: none;
+}
 
-/* Strain Explorer */
+.page-link:hover{
+  color: purple;
+}
+/* Strain Expl
+orer */
 .effects-label{
   display: inline-block;
   margin-left: 8%;
