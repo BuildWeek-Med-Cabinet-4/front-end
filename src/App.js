@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import axiosWithAuth from "./utils/axiosWithAuth"
-import { BrowserRouter as Router, Route, Link  } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch  } from "react-router-dom";
 import Home from './components/Home';
 import Identify from './components/Identify'
 import StrainFinder from './StrainFinder';
@@ -69,10 +69,11 @@ function App() {
           <PrivateRoute exact path = '/myaccount/:id' component={UserAccount} />
           <Route exact path = '/identify' ><Identify /></Route>
          
-          <Route exact path = '/' component = {Home}></Route>
+         
           <Route exact path = '/StrainFinder' component = {StrainFinder}></Route>
           <Route exact path = "/strain/:id" component={ViewStrain} />
-        
+          <Route exact path = '/' component = {Home}></Route>
+          
 
       
       </appContext.Provider>
