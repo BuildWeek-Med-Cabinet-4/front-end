@@ -1,5 +1,5 @@
 body{
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   
 }
@@ -110,13 +110,31 @@ header {
 
 /*Universal Styling*/
 .med-title{
+  font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
+  font-size: 3.9rem;
 }
 
 hr{
-  margin: 0 auto;
-  width: 35%;
-  color: purple
+  margin: 0;
+}
+.orange-hr{
+  width: 10%;
+  color: orange;
+  margin-top: 5px;
+  
+}
+
+.purple-hr{
+  width: 20%;
+  color:purple;
+  margin-top: 5px;
+
+}
+
+.green-hr{
+  width: 25%;
+  color: #43e06d;
 }
 /*Home page Styling*/
 .jumbotron-container{
@@ -226,9 +244,9 @@ nav{
 
 .all-strains-container{
   width: 95%;
-  max-width: 85%;
+  max-width: 95%;
   padding: 5%;
-  border: dotted purple 1px;
+  
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -236,14 +254,38 @@ nav{
 
 }
 
+html body div#root div div div div.search-component section.all-strains-container div.all-strains-child h6{
+  font-size: 1.2rem;
+}
+
+html body div#root div div div div.search-component section.all-strains-container div.all-strains-child h6:hover{
+  text-decoration: underline orange;
+}
+
 .all-strains-child{
-  width: 23%;
+  width: 20%;
   height: auto;
-  margin-left: 1%;
-  margin-bottom: 1%;
-  border: 1px dotted black;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 7px;
 
 }
+
+div.all-strains-child > a{
+  margin-bottom: 3%;
+  color: black;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+div.all-strains-child > a:hover{
+  text-decoration: underline dotted 1px #43e06d;
+  
+}
+
 
 
 .strain-img{
@@ -255,11 +297,21 @@ nav{
 .mystrains-button {
   background: none;
   border-color: purple;
+  color: purple;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.mystrains-button:hover {
+  color: orange
 }
 
 
+html body div#root div div div.strain-header div.title-container button.mystrains-button{
+  margin-top: 30%;
 
-
+  font-size: 1.2rem;
+}
 
 .finder-button {
   background: #43e06d;
@@ -271,8 +323,25 @@ nav{
   font-size: 2rem;
 }
 
+.nav-bar > a{
+  font-size: 1.3rem;
+  font-weight: bold;
+  
+}
+
+.navbar > a:hover {
+  color: purple;
+}
+
+p{
+  font-size: 20px;
+}
 /* styling for strain page */
 
+.redspan{
+  color: red;
+  font-size: 1rem;
+}
 .strain-title{
   color: #43e06d;
 }

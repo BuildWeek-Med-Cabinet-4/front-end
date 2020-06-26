@@ -143,8 +143,15 @@ const formSchema = yup.object().shape({
 
 
         <div>
-            <h3> Let us help you find a Strain</h3>
-            <p>*All fields are required</p>
+            < h2 className = 'browse-title'>Strain Finder
+              <hr className = 'green-hr'></hr>
+              <hr className = 'purple-hr'></hr>
+              <hr className = 'orange-hr'></hr>
+            </h2>
+
+            <p>Welcome to Strain Finder!</p>
+
+            <p><span className = 'redspan'>*All fields are required</span></p>
 
             <form onSubmit={getRecStrains}>
 

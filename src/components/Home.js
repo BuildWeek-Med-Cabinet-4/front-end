@@ -58,16 +58,15 @@ const paginate = pageNumber => setCurrentPage(pageNumber)
         
         </div>
         
-        <br></br>
+       
         
-        <hr></hr>
-        <br></br>
-        <hr></hr>
-      
-      
+ 
           <div className = 'search-component'>
 
-          <h2 className = 'browse-title'>Browse All Strains</h2>
+          <h2 className = 'browse-title'>Browse All Strains
+          <hr className = 'green-hr'></hr>
+        <hr className = 'purple-hr'></hr>
+        <hr className = 'orange-hr'></hr></h2>
           <Posts posts={currentPosts} loading = {loading}  />
           <Pagination postsPerPage = {postsPerPage} totalPosts = {posts.length} paginate={paginate}/>
 

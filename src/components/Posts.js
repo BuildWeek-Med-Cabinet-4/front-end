@@ -26,8 +26,8 @@ function Posts({ posts, loading }) {
                     <div key={post.id} className ='all-strains-child' >
                         <img className = 'strain-img' src= {post.img_url} alt = 'something'></img>
 
-                        <h6 ><span className = 'strain-span'>Strain Name: </span>{post.strain_name}</h6>
-                        <Link to={`/strain/${post.id}`} style={{textDecoration: "none"}}>more info</Link>
+                        <h6 ><span className = 'strain-span'> </span>{post.strain_name}</h6>
+                        <Link to={`/strain/${post.id}`}>more info</Link>
                         <div>
                         <button className="mystrains-button" onClick={(e)=>{
                             e.preventDefault();
