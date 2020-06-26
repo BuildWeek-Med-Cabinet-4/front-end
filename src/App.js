@@ -32,7 +32,7 @@ function App() {
     <Router>
     <div >
 
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains}}>
+      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>

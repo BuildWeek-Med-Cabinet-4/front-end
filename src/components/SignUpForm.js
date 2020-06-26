@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import * as yup from 'yup';
 import {useHistory} from 'react-router-dom'
 import axios from 'axios';
+import {appContext} from '../contexts/appContext';
 
 const SignUpForm = () => {
+   const setIsLoggedIn = useContext(appContext).setIsLoggedIn;
   const {push} = useHistory();
     const initialFormState = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
     }
     const [newUserInfo, setNewUserInfo] = useState(initialFormState);
     const [errors, setErrors] = useState(initialFormState);
@@ -26,7 +28,6 @@ const SignUpForm = () => {
           .email("Must be a valid email address")
           .required("Please enter an email address"),
         password: yup.string().required("Please create a password").min(3, 'Password must be at least 6 characters long '),
-        confirmPassword: yup.string().required("Please confirm your password")
       });
 
       const confirmPasswordSchema = yup.object().shape({
@@ -45,6 +46,7 @@ const SignUpForm = () => {
         setConfirmPasswordError("");
       })
       .catch(err => setConfirmPasswordError(err.errors[0] ));
+      console.log("user info", confirmPassword )
     }
 
     const handleChanges = e => {
@@ -59,6 +61,8 @@ const SignUpForm = () => {
         setErrors({ ...errors, [e.target.name]: "" });
       })
       .catch(err => setErrors({ ...errors, [e.target.name]: err.errors[0] }));
+      console.log("user info", newUserInfo )
+      
     }
 
     useEffect(() => {
@@ -70,11 +74,24 @@ const SignUpForm = () => {
 
       const createUser = e => {
           e.preventDefault();
+          console.log("user info",newUserInfo)
           if(newUserInfo.password !== confirmPassword) {
               setPasswordsDontMatch(true);
           } else {
               setPasswordsDontMatch(false);
-              // axios post request to add user and push to strainsList page
+              // axios post request to add user and push to Home page
+              axios
+                .post("https://best-med-cabinet.herokuapp.com/api/auth/register", newUserInfo )
+                .then(res=>{
+                  console.log("login res", res)
+                  setIsLoggedIn(true);
+                  localStorage.setItem("Logged in", true)
+                  localStorage.setItem("Current user", res.data.createdUser.id)
+                  localStorage.setItem("token", res.data.token)
+                  push("/");
+                })
+                .catch(err=>console.log(err));
+
 
           }
       }
