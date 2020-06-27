@@ -30,15 +30,11 @@ const ViewStrain = () => {
                     <div className="title-container">
                     <h1 className="strain-title">{strain.strain_name}</h1>
                     <p style={{fontStyle:"italic"}}>{strain.description}</p>
-                    <button className="mystrains-button" onClick={(e)=>{
+                    {isLoggedIn ? <button className="mystrains-button" onClick={(e)=>{
                             e.preventDefault();
-                            if(isLoggedIn) {
-                                addToMyStrains();
-                            } else {
-                                alert("You must be logged in to do that")
-                                
-                            }
-                        }}>Add to My Strains</button>
+                            addToMyStrains(strain.id);
+                            
+                        }}>Add to My Strains</button> : null}
                     </div>
                     <img src={strain.img_url} />
                     

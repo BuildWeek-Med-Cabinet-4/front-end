@@ -2,18 +2,20 @@ import React, {useContext, useState, useEffect} from 'react';
 import {appContext} from "../contexts/appContext";
 import {Link} from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
+import UpdateAccount from "./UpdateAccount";
 
 
 
 const UserAccount = (props) => {
     const [user, setUser] = useState({})
     const [cart, setCart]= useState([]);
-    const addToMyStrains = useContext(appContext).addToMyStrains;
+    const [editing, setEditing] = useState(false);
     const isLoggedIn = useContext(appContext).isLoggedIn;
+    const id = Number(localStorage.getItem("Current user"))
     console.log("user info", user)
 
     useEffect(()=>{
-        const id = Number(localStorage.getItem("Current user"))
+        
         axiosWithAuth()
             .get(`/users/${id}`)
             .then(res=>{
@@ -22,11 +24,29 @@ const UserAccount = (props) => {
                 setCart(res.data.cart)
             })
     },[])
+
+    const removeStrain = (strainId) => {
+        const strainToRemove = {user_id: id, product_id: strainId }
+        console.log("strain to remove", strainToRemove)
+        axiosWithAuth()
+            .delete(`/users/${id}/cart/${strainId}`)
+            .then(res=>{
+                console.log("delete res", res)
+                axiosWithAuth()
+                    .get(`/users/${id}`)
+                    .then(res=>{
+                        console.log("current user", res)
+                        setCart(res.data.cart)
+            })
+
+            })
+            .catch(err=>console.log(strainToRemove))
+    }
     return (
-        <div>
+        <div className="my-account">
             <h1>{user.firstName} {user.lastName}</h1>
             <p>{user.email} </p>
-            <button>Edit Profile</button>
+            {editing ? <UpdateAccount user={user} setUser={setUser} setEditing={setEditing}/> : <button onClick={()=>setEditing(true)}>Edit Profile</button>}
             <h3>My Saved Strains:</h3>
             
             <div className="my-strains">
@@ -39,7 +59,7 @@ const UserAccount = (props) => {
                 
                     {isLoggedIn ? <button className="mystrains-button" onClick={(e)=>{
                         e.preventDefault();
-                        
+                        removeStrain(strain.id);
                     
                     }}>Remove</button> : null}
                 </div>
