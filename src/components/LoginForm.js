@@ -21,6 +21,7 @@ const Login = () => {
     const [errors, setErrors] = useState(initialFormState);
     const [buttonOff, setButtonOff] = useState(true);
     const setIsLoggedIn = useContext(appContext).setIsLoggedIn;
+    const [isLoading, setIsLoading] = useState(false); 
  
 
     const formSchema = yup.object().shape({
@@ -28,7 +29,7 @@ const Login = () => {
           .string()
           .email("Must be a valid email address")
           .required("Please enter an email address"),
-        password: yup.string().required("Please enter your password"),
+        password: yup.string().required("Please enter your password").min(6, "must be at least 6 characters long"),
         
       });
 
@@ -55,6 +56,8 @@ const Login = () => {
 
       const logUserIn = e => {
           e.preventDefault();
+          console.log("user info to login", credentials)
+          setIsLoading(true);
         //axios post request and push to strainsList
         axios
                 .post("https://best-med-cabinet.herokuapp.com/api/auth/login", credentials )
@@ -66,8 +69,12 @@ const Login = () => {
                   localStorage.setItem("Current user", res.data.logged_user.id)
                   localStorage.setItem("token", res.data.token)
                   push("/");
+                  setIsLoading(false)
                 })
-                .catch(err=>console.log(err));
+                .catch(err=>{
+                  console.log(err)
+                  setIsLoading(false);
+                });
       }
 
     return (
@@ -90,7 +97,8 @@ const Login = () => {
                         //push back to home page
                         push("/")
                     }}>Go Back</button>
-                    <button disabled={buttonOff} type="submit">Log in</button>  
+                    <button disabled={buttonOff} type="submit">Log in</button>
+                    {isLoading ? <p>One moment...</p> : null}  
                 </div>
             </form>
         </div>

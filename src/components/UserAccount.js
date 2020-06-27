@@ -1,14 +1,27 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {appContext} from "../contexts/appContext";
 import {Link} from "react-router-dom";
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 
 const UserAccount = (props) => {
-    const user = useContext(appContext).currentUser;
+    const [user, setUser] = useState({})
+    const [cart, setCart]= useState([]);
     const addToMyStrains = useContext(appContext).addToMyStrains;
     const isLoggedIn = useContext(appContext).isLoggedIn;
-    console.log("user info", user.cart)
+    console.log("user info", user)
+
+    useEffect(()=>{
+        const id = Number(localStorage.getItem("Current user"))
+        axiosWithAuth()
+            .get(`/users/${id}`)
+            .then(res=>{
+                console.log("current user", res)
+                setUser(res.data);
+                setCart(res.data.cart)
+            })
+    },[])
     return (
         <div>
             <h1>{user.firstName} {user.lastName}</h1>
@@ -16,8 +29,8 @@ const UserAccount = (props) => {
             <button>Edit Profile</button>
             <h3>My Saved Strains:</h3>
             
-            <div>
-             {/* {user.cart.map(strain=>(
+            <div className="my-strains">
+             {cart.map(strain=>(
                 <div key={strain.id} className ='all-strains-child' >
                     <img className = 'strain-img' src= {strain.img_url} alt = 'something'></img>
 
@@ -26,11 +39,11 @@ const UserAccount = (props) => {
                 
                     {isLoggedIn ? <button className="mystrains-button" onClick={(e)=>{
                         e.preventDefault();
-                        addToMyStrains(strain.id);
+                        
                     
-                    }}>Add to My Strains</button> : null}
+                    }}>Remove</button> : null}
                 </div>
-                ))} */}
+                ))}
             </div>
         </div>
     )

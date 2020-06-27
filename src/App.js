@@ -22,6 +22,7 @@ function App() {
         .then(res=>{
           console.log("current use", res)
           setCurrentUser(res.data);
+          setSavedStrains(res.data.cart);  
         })
         .catch(err=>console.log(err))
     }
@@ -36,11 +37,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(loggedIn());
   const [currentUser, setCurrentUser] = useState({});
   const {push} = useHistory();
+  const [savedStrains, setSavedStrains] = useState([]);
 
   const addToMyStrains = (id) => {
     const strainToAdd = {user_id: currentUser.id, product_id: id}
+    console.log("adding this strain", strainToAdd)
     axiosWithAuth()
-      .post("/users/auth/cart", strainToAdd)
+      .post("/users/cart", strainToAdd)
       .then(res=>{
         console.log("add strain res", res)
       })
@@ -62,7 +65,14 @@ function App() {
     <Router>
     <div >
 
-      <appContext.Provider value = {{isLoggedIn: isLoggedIn, addToMyStrains: addToMyStrains, setIsLoggedIn: setIsLoggedIn, currentUser: currentUser, setCurrentUser: setCurrentUser}}>
+      <appContext.Provider value = {{
+        isLoggedIn: isLoggedIn, 
+        addToMyStrains: addToMyStrains, 
+        setIsLoggedIn: setIsLoggedIn, 
+        currentUser: currentUser, 
+        setCurrentUser: setCurrentUser,
+        savedStrains: savedStrains,
+        setSavedStrains: setSavedStrains}}>
         <nav className="nav-bar">
           
           <Link to = '/'>Home</Link>

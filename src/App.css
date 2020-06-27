@@ -399,3 +399,8 @@ p{
   border-radius: 10px;
 }
 
+.my-strains {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}

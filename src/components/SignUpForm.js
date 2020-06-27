@@ -7,6 +7,7 @@ import {appContext} from '../contexts/appContext';
 const SignUpForm = () => {
    const setIsLoggedIn = useContext(appContext).setIsLoggedIn;
    const setCurrentUser = useContext(appContext).setCurrentUser;
+   const [isLoading, setIsLoading] = useState(false); 
   const {push} = useHistory();
     const initialFormState = {
       firstName: "",
@@ -81,6 +82,7 @@ const SignUpForm = () => {
           } else {
               setPasswordsDontMatch(false);
               // axios post request to add user and push to Home page
+              setIsLoading(true);
               axios
                 .post("https://best-med-cabinet.herokuapp.com/api/auth/register", newUserInfo )
                 .then(res=>{
@@ -91,8 +93,12 @@ const SignUpForm = () => {
                   localStorage.setItem("Current user", res.data.createdUser.id)
                   localStorage.setItem("token", res.data.token)
                   push("/");
+                  setIsLoading(false);
                 })
-                .catch(err=>console.log(err));
+                .catch(err=>{
+                  console.log(err)
+                  setIsLoading(false);
+                });
 
 
           }
@@ -126,7 +132,7 @@ const SignUpForm = () => {
                         push("/")
                     }}>Cancel</button>
                     <button disabled={buttonOff} type="submit">Next</button>
-                    
+                    {isLoading ? <p>One moment...</p> : null}
                 </div>
             </form>
         </div>
